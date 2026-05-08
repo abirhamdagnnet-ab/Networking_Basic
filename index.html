@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Networking Basics</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <div class="hero">
+        <div class="hero-badge">INTERNSHIP PREP GUIDE</div>
+        <h1>Networking Basics<br />for basic IT students</h1>
+        <p>Everything you need to know before your first day. Study each topic, take the quiz, practice the tools.</p>
+        <div class="progress-bar-wrap">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-label" id="progressLabel">0% complete</div>
+    </div>
+
+    <nav class="nav">
+        <button class="nav-btn active" onclick="showSection('osi')">OSI Model</button>
+        <button class="nav-btn" onclick="showSection('protocols')">Protocols</button>
+        <button class="nav-btn" onclick="showSection('devices')">Devices</button>
+        <button class="nav-btn" onclick="showSection('security')">Security</button>
+        <button class="nav-btn" onclick="showSection('subnet')">Subnetting</button>
+        <button class="nav-btn" onclick="showSection('commands')">Commands</button>
+        <button class="nav-btn" onclick="showSection('quiz')">Quiz</button>
+        <button class="nav-btn" onclick="showSection('checklist')">Checklist</button>
+    </nav>
+
+    <div class="main">
+
+        <!-- OSI MODEL -->
+        <div class="section active" id="sec-osi">
+            <div class="section-title">The OSI Model</div>
+            <div class="section-subtitle">7 LAYERS — MEMORIZE THESE</div>
+
+            <div class="card">
+                <p>The OSI model describes how data travels from one device to another. Every networking interview will
+                    ask about this. Use the mnemonic: <strong style="color:var(--accent)">"Please Do Not Throw Sausage
+                        Pizza Away"</strong> (Physical → Data Link → Network → Transport → Session → Presentation →
+                    Application)</p>
+            </div>
+
+            <table class="osi-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>LAYER</th>
+                        <th>WHAT IT DOES</th>
+                        <th>EXAMPLES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="layer-num">7</span></td>
+                        <td><span class="layer-name">Application</span></td>
+                        <td><span class="layer-desc">Interface for the user and software. Where you interact with the
+                                network.</span></td>
+                        <td><span class="layer-example">HTTP, FTP, DNS, SMTP</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="layer-num">6</span></td>
+                        <td><span class="layer-name">Presentation</span></td>
+                        <td><span class="layer-desc">Translates, encrypts, and compresses data into readable
+                                format.</span></td>
+                        <td><span class="layer-example">SSL/TLS, JPEG, ASCII</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="layer-num">5</span></td>
+                        <td><span class="layer-name">Session</span></td>
+                        <td><span class="layer-desc">Manages sessions (open, maintain, close connections between
+                                apps).</span></td>
+                        <td><span class="layer-example">NetBIOS, RPC, SQL</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="layer-num">4</span></td>
+                        <td><span class="layer-name">Transport</span></td>
+                        <td><span class="layer-desc">Ensures reliable delivery. Breaks data into segments. TCP vs
+                                UDP.</span></td>
+                        <td><span class="layer-example">TCP, UDP</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="layer-num">3</span></td>
+                        <td><span class="layer-name">Network</span></td>
+                        <td><span class="layer-desc">Routing — finds the best path between networks using IP
+                                addresses.</span></td>
+                        <td><span class="layer-example">IP, ICMP, Routers</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="layer-num">2</span></td>
+                        <td><span class="layer-name">Data Link</span></td>
+                        <td><span class="layer-desc">Transfers data between directly connected nodes using MAC
+                                addresses.</span></td>
+                        <td><span class="layer-example">Ethernet, Switches, MAC</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="layer-num">1</span></td>
+                        <td><span class="layer-name">Physical</span></td>
+                        <td><span class="layer-desc">Actual hardware — cables, signals, bits. The raw electrical
+                                transmission.</span></td>
+                        <td><span class="layer-example">Cables, Hubs, Wi-Fi signals</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="card" style="margin-top:16px">
+                <div class="card-title">💡 Bank Context <span class="tag tag-yellow">IMPORTANT</span></div>
+                <p>In a bank, Layer 3 (routing between branches via MPLS), Layer 4 (TCP ensures transactions are
+                    complete), and Layer 6 (TLS encrypts customer data) are especially critical. When an ATM fails,
+                    engineers check all layers from Physical (cable ok?) up to Application (server responding?).</p>
+            </div>
+        </div>
+
+        <!-- PROTOCOLS -->
+        <div class="section" id="sec-protocols">
+            <div class="section-title">Key Protocols</div>
+            <div class="section-subtitle">KNOW THESE BY HEART</div>
+
+            <div class="card">
+                <p>Protocols are rules that define how devices communicate. In banking, these are used every second
+                    across ATMs, branch connections, and online banking systems.</p>
+            </div>
+
+            <div class="proto-grid">
+                <div class="proto-card">
+                    <div class="proto-name">TCP</div>
+                    <div class="proto-port">Connection-based</div>
+                    <div class="proto-desc">Reliable, ordered delivery. Used when data must arrive complete — banking
+                        transactions, file transfers.</div>
+                </div>
+                <div class="proto-card">
+                    <div class="proto-name">UDP</div>
+                    <div class="proto-port">Connectionless</div>
+                    <div class="proto-desc">Fast, no guarantee. Used for video streaming, VoIP calls, DNS queries.</div>
+                </div>
+                <div class="proto-card">
+                    <div class="proto-name">IP</div>
+                    <div class="proto-port">Layer 3</div>
+                    <div class="proto-desc">Internet Protocol — assigns addresses and routes packets between networks.
+                    </div>
+                </div>
+                <div class="proto-card">
+                    <div class="proto-name">DNS</div>
+                    <div class="proto-port">Port 53</div>
+                    <div class="proto-desc">Translates domain names to IPs. Like a phone book for the internet.</div>
+                </div>
+                <div class="proto-card">
+                    <div class="proto-name">DHCP</div>
+                    <div class="proto-port">Port 67/68</div>
+                    <div class="proto-desc">Automatically assigns IP addresses to devices on a network.</div>
+                </div>
+                <div class="proto-card">
+                    <div class="proto-name">HTTP/S</div>
+                    <div class="proto-port">Port 80 / 443</div>
+                    <div class="proto-desc">Web traffic. HTTPS = encrypted (TLS). Banks only use HTTPS for online
+                        banking.</div>
+                </div>
+                <div class="proto-card">
+                    <div class="proto-name">SSH</div>
+                    <div class="proto-port">Port 22</div>
+                    <div class="proto-desc">Secure remote login to servers and network devices. Replaces old Telnet.
+                    </div>
+                </div>
+                <div class="proto-card">
+                    <div class="proto-name">FTP/SFTP</div>
+                    <div class="proto-port">Port 21 / 22</div>
+                    <div class="proto-desc">File transfer. SFTP is the secure version used in banks.</div>
+                </div>
+                <div class="proto-card">
+                    <div class="proto-name">SMTP</div>
+                    <div class="proto-port">Port 25 / 587</div>
+                    <div class="proto-desc">Sending email. Used by mail servers to relay messages.</div>
+                </div>
+                <div class="proto-card">
+                    <div class="proto-name">SNMP</div>
+                    <div class="proto-port">Port 161</div>
+                    <div class="proto-desc">Network monitoring — collects data from routers, switches for management
+                        tools.</div>
+                </div>
+                <div class="proto-card">
+                    <div class="proto-name">ICMP</div>
+                    <div class="proto-port">No port</div>
+                    <div class="proto-desc">Used by ping and traceroute to test connectivity and diagnose network
+                        issues.</div>
+                </div>
+                <div class="proto-card">
+                    <div class="proto-name">VoIP</div>
+                    <div class="proto-port">RTP / SIP</div>
+                    <div class="proto-desc">Voice over IP — how bank phone systems (IP PBX) work internally.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DEVICES -->
+        <div class="section" id="sec-devices">
+            <div class="section-title">Network Devices</div>
+            <div class="section-subtitle">HARDWARE YOU WILL SEE IN THE BANK</div>
+
+            <div class="card">
+                <div class="card-title">🔀 Switch <span class="tag tag-blue">LAYER 2</span></div>
+                <p>Connects devices within the same network (LAN). Uses MAC addresses to forward frames only to the
+                    correct port. Banks have many switches — one per floor or department. Supports VLANs to separate
+                    traffic (e.g., staff vs ATM network).</p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🌐 Router <span class="tag tag-blue">LAYER 3</span></div>
+                <p>Connects different networks together. Uses IP addresses and routing tables to decide where to send
+                    packets. The bank's router connects the branch to the internet or to other branches via MPLS/WAN
+                    links.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🔥 Firewall <span class="tag tag-yellow">SECURITY</span></div>
+                <p>Controls what traffic enters and leaves the network based on rules (ACLs). Banks have enterprise
+                    firewalls (Cisco, Palo Alto, Fortinet). They create a DMZ (Demilitarized Zone) to isolate
+                    public-facing services from the internal network.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">📡 Access Point (WAP) <span class="tag tag-green">WIRELESS</span></div>
+                <p>Provides Wi-Fi connectivity. In banks, staff Wi-Fi is separate from guest Wi-Fi, and both are
+                    isolated from the core banking network using VLANs.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🔄 Load Balancer <span class="tag tag-purple">ADVANCED</span></div>
+                <p>Distributes traffic across multiple servers so no single server gets overwhelmed. Critical in banking
+                    for online banking portals and ATM switch servers.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🔒 VPN Concentrator <span class="tag tag-yellow">SECURITY</span></div>
+                <p>Manages VPN connections for remote users. Bank employees working remotely connect through VPN to
+                    access internal systems securely.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">💡 Key Difference to Remember</div>
+                <p><strong style="color:#fff">Hub</strong> <span style="color:var(--muted)">→ broadcasts to ALL ports
+                        (old, dumb, not used anymore)</span><br />
+                    <strong style="color:#fff">Switch</strong> <span style="color:var(--muted)">→ sends only to the
+                        correct port (smart, uses MAC table)</span><br />
+                    <strong style="color:#fff">Router</strong> <span style="color:var(--muted)">→ connects different
+                        networks, uses IP addresses</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- SECURITY -->
+        <div class="section" id="sec-security">
+            <div class="section-title">Network Security</div>
+            <div class="section-subtitle">CRITICAL IN BANKING</div>
+
+            <div class="card">
+                <div class="card-title">🛡️ CIA Triad <span class="tag tag-yellow">MUST KNOW</span></div>
+                <p>The foundation of all security:<br /><br />
+                    <strong style="color:var(--accent)">Confidentiality</strong> — only authorized people can see data
+                    (encryption, access control)<br />
+                    <strong style="color:var(--accent)">Integrity</strong> — data is not tampered with (hashing, digital
+                    signatures)<br />
+                    <strong style="color:var(--accent)">Availability</strong> — systems are always accessible when
+                    needed (redundancy, backups)
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🔐 VPN Types</div>
+                <p><strong style="color:#fff">Site-to-Site VPN</strong> — connects two branch offices securely over the
+                    internet. All branch traffic is encrypted.<br /><br />
+                    <strong style="color:#fff">Remote Access VPN</strong> — individual employees connect from home. They
+                    use a VPN client (like Cisco AnyConnect).<br /><br />
+                    <strong style="color:#fff">SSL VPN</strong> — browser-based VPN, no client software needed.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🚨 IDS vs IPS</div>
+                <p><strong style="color:#fff">IDS (Intrusion Detection System)</strong> — monitors and alerts on
+                    suspicious activity. Does NOT block anything. Like a security camera.<br /><br />
+                    <strong style="color:#fff">IPS (Intrusion Prevention System)</strong> — monitors AND actively blocks
+                    threats in real time. Like a security guard.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🌐 Network Segmentation</div>
+                <p>Banks divide their network into separate zones so a breach in one area cannot spread. Common
+                    segments:<br /><br />
+                    <strong style="color:var(--accent)">DMZ</strong> — public-facing servers (web, email)<br />
+                    <strong style="color:var(--accent)">Staff VLAN</strong> — internal employee network<br />
+                    <strong style="color:var(--accent)">ATM Network</strong> — completely isolated for ATM
+                    transactions<br />
+                    <strong style="color:var(--accent)">Management VLAN</strong> — for IT team to manage devices
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🔒 Encryption Basics</div>
+                <p><strong style="color:#fff">SSL/TLS</strong> — encrypts data in transit (HTTPS websites, online
+                    banking)<br />
+                    <strong style="color:#fff">AES</strong> — standard encryption algorithm for data at rest<br />
+                    <strong style="color:#fff">RSA</strong> — public key encryption used in certificates and
+                    authentication<br />
+                    <strong style="color:#fff">Hashing (SHA-256)</strong> — converts data to a fixed string; verifies
+                    integrity without revealing content
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">⚠️ Common Threats in Banking</div>
+                <p><strong style="color:#ef4444">Phishing</strong> — fake emails tricking staff into giving
+                    credentials<br />
+                    <strong style="color:#ef4444">Man-in-the-Middle</strong> — attacker intercepts network traffic<br />
+                    <strong style="color:#ef4444">DDoS</strong> — flooding servers to cause downtime<br />
+                    <strong style="color:#ef4444">Insider Threats</strong> — employees misusing access to sensitive
+                    data<br />
+                    <strong style="color:#ef4444">ATM Skimming</strong> — physical + network attack on ATM systems
+                </p>
+            </div>
+        </div>
+
+        <!-- SUBNETTING -->
+        <div class="section" id="sec-subnet">
+            <div class="section-title">Subnetting</div>
+            <div class="section-subtitle">PRACTICE THIS DAILY</div>
+
+            <div class="card">
+                <p>Subnetting divides a large network into smaller pieces. Banks use subnetting to organize departments,
+                    branches, and device types. Enter an IP and prefix to calculate below.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🧮 Subnet Calculator</div>
+                <div class="calc-grid">
+                    <div class="input-group">
+                        <label class="input-label">IP ADDRESS</label>
+                        <input class="calc-input" id="ipInput" type="text" placeholder="192.168.1.0"
+                            value="192.168.1.0" />
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">PREFIX (CIDR)</label>
+                        <input class="calc-input" id="prefixInput" type="number" placeholder="24" value="24" min="1"
+                            max="30" />
+                    </div>
+                </div>
+                <button class="btn" onclick="calcSubnet()">CALCULATE</button>
+
+                <div id="subnetResult" style="margin-top:20px; display:none">
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <div class="result-key">SUBNET MASK</div>
+                            <div class="result-val" id="res-mask">—</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-key">NETWORK ADDRESS</div>
+                            <div class="result-val" id="res-network">—</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-key">FIRST HOST</div>
+                            <div class="result-val" id="res-first">—</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-key">LAST HOST</div>
+                            <div class="result-val" id="res-last">—</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-key">BROADCAST</div>
+                            <div class="result-val" id="res-broadcast">—</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-key">USABLE HOSTS</div>
+                            <div class="result-val" id="res-hosts">—</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">📋 Common Subnet Cheat Sheet</div>
+                <table class="osi-table" style="margin-top:8px">
+                    <thead>
+                        <tr>
+                            <th>CIDR</th>
+                            <th>SUBNET MASK</th>
+                            <th>HOSTS</th>
+                            <th>USE CASE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="layer-example">/8</span></td>
+                            <td>255.0.0.0</td>
+                            <td style="color:var(--accent3)">16,777,214</td>
+                            <td style="color:var(--muted);font-size:12px">Large organizations</td>
+                        </tr>
+                        <tr>
+                            <td><span class="layer-example">/16</span></td>
+                            <td>255.255.0.0</td>
+                            <td style="color:var(--accent3)">65,534</td>
+                            <td style="color:var(--muted);font-size:12px">Campus networks</td>
+                        </tr>
+                        <tr>
+                            <td><span class="layer-example">/24</span></td>
+                            <td>255.255.255.0</td>
+                            <td style="color:var(--accent3)">254</td>
+                            <td style="color:var(--muted);font-size:12px">Single department/branch</td>
+                        </tr>
+                        <tr>
+                            <td><span class="layer-example">/25</span></td>
+                            <td>255.255.255.128</td>
+                            <td style="color:var(--accent3)">126</td>
+                            <td style="color:var(--muted);font-size:12px">Half a /24</td>
+                        </tr>
+                        <tr>
+                            <td><span class="layer-example">/26</span></td>
+                            <td>255.255.255.192</td>
+                            <td style="color:var(--accent3)">62</td>
+                            <td style="color:var(--muted);font-size:12px">Small offices</td>
+                        </tr>
+                        <tr>
+                            <td><span class="layer-example">/30</span></td>
+                            <td>255.255.255.252</td>
+                            <td style="color:var(--accent3)">2</td>
+                            <td style="color:var(--muted);font-size:12px">Point-to-point links</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- COMMANDS -->
+        <div class="section" id="sec-commands">
+            <div class="section-title">Essential Commands</div>
+            <div class="section-subtitle">TOOLS YOU WILL USE EVERY DAY</div>
+
+            <div class="card">
+                <div class="card-title">🖥️ Windows Commands <span class="tag tag-blue">MOST COMMON</span></div>
+                <div class="cmd-block">
+                    <div class="cmd-line"><span class="cmd-prompt">C:\></span><span
+                            class="cmd-text">ipconfig</span><span class="cmd-comment">— show your IP, subnet,
+                            gateway</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">C:\></span><span class="cmd-text">ipconfig
+                            /all</span><span class="cmd-comment">— show detailed info including MAC address</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">C:\></span><span class="cmd-text">ping
+                            8.8.8.8</span><span class="cmd-comment">— test connectivity to Google DNS</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">C:\></span><span class="cmd-text">tracert
+                            8.8.8.8</span><span class="cmd-comment">— trace the path packets take</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">C:\></span><span class="cmd-text">nslookup
+                            google.com</span><span class="cmd-comment">— query DNS for an IP address</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">C:\></span><span class="cmd-text">netstat
+                            -an</span><span class="cmd-comment">— show all active connections and ports</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">C:\></span><span class="cmd-text">arp -a</span><span
+                            class="cmd-comment">— show ARP table (IP to MAC mappings)</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">C:\></span><span class="cmd-text">route
+                            print</span><span class="cmd-comment">— display routing table</span></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🖧 Cisco IOS Commands <span class="tag tag-purple">SWITCHES & ROUTERS</span>
+                </div>
+                <div class="cmd-block">
+                    <div class="cmd-line"><span class="cmd-prompt">Switch#</span><span class="cmd-text">show ip
+                            interface brief</span><span class="cmd-comment">— quick view of all interfaces</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">Switch#</span><span class="cmd-text">show vlan
+                            brief</span><span class="cmd-comment">— list all VLANs and assigned ports</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">Switch#</span><span class="cmd-text">show mac
+                            address-table</span><span class="cmd-comment">— view MAC address table</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">Router#</span><span class="cmd-text">show ip
+                            route</span><span class="cmd-comment">— display the routing table</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">Router#</span><span class="cmd-text">show
+                            running-config</span><span class="cmd-comment">— see current active configuration</span>
+                    </div>
+                    <div class="cmd-line"><span class="cmd-prompt">Router#</span><span class="cmd-text">show
+                            interfaces</span><span class="cmd-comment">— detailed interface status and stats</span>
+                    </div>
+                    <div class="cmd-line"><span class="cmd-prompt">Router#</span><span class="cmd-text">ping
+                            192.168.1.1</span><span class="cmd-comment">— test reachability from the router</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">Router#</span><span class="cmd-text">show cdp
+                            neighbors</span><span class="cmd-comment">— see connected Cisco devices</span></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🐧 Linux Commands <span class="tag tag-green">SERVERS</span></div>
+                <div class="cmd-block">
+                    <div class="cmd-line"><span class="cmd-prompt">$</span><span class="cmd-text">ifconfig</span><span
+                            class="cmd-comment">— show network interfaces (older Linux)</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">$</span><span class="cmd-text">ip addr
+                            show</span><span class="cmd-comment">— modern way to show IP addresses</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">$</span><span class="cmd-text">ping -c 4
+                            8.8.8.8</span><span class="cmd-comment">— ping 4 times then stop</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">$</span><span class="cmd-text">traceroute
+                            8.8.8.8</span><span class="cmd-comment">— trace route (Linux version)</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">$</span><span class="cmd-text">netstat
+                            -tuln</span><span class="cmd-comment">— show listening ports</span></div>
+                    <div class="cmd-line"><span class="cmd-prompt">$</span><span class="cmd-text">ss -tulnp</span><span
+                            class="cmd-comment">— modern socket stats</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIZ -->
+        <div class="section" id="sec-quiz">
+            <div class="section-title">Test Yourself</div>
+            <div class="section-subtitle">10 QUESTIONS — BANK NETWORKING FOCUS</div>
+            <div class="quiz-score" id="quizScore">Score: 0 / 0</div>
+            <div id="quizContainer"></div>
+            <button class="btn" onclick="resetQuiz()" style="margin-top:10px">↺ RESTART QUIZ</button>
+        </div>
+
+        <!-- CHECKLIST -->
+        <div class="section" id="sec-checklist">
+            <div class="section-title">Pre-Internship Checklist</div>
+            <div class="section-subtitle">TICK EVERYTHING BEFORE DAY ONE</div>
+
+            <div class="card">
+                <p>Click each item when you have studied or prepared it. Your progress is saved on this page.</p>
+            </div>
+
+            <div class="checklist" id="checklistContainer">
+                <!-- generated by JS -->
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
