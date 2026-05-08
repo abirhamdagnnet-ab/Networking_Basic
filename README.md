@@ -1,1 +1,1 @@
-#basic networking turorial for information technology
+#basic networking tutorial for information technology
